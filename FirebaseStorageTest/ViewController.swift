@@ -7,12 +7,20 @@
 //
 
 import UIKit
+import Firebase
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        let storage = FIRStorage.storage()
+        
+        // Create a storage reference from our storage service
+        let storageRef = storage.referenceForURL("gs://fir-storagetestapp.appspot.com")
+        
+        // Create a child reference
+        // imagesRef now points to "images"
+        let imagesRef = storageRef.child("images")
     }
 
     override func didReceiveMemoryWarning() {
