@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dA0-AD-ay6">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="FirebaseStorageTest" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +16,82 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CtF-JR-ttQ">
+                                <rect key="frame" x="0.0" y="66" width="600" height="490"/>
+                            </imageView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qBe-es-rzz">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="lnZ-Cb-Zqp"/>
+                                    <barButtonItem systemItem="camera" id="0gE-vW-kYd">
+                                        <connections>
+                                            <action selector="selectImage:" destination="BYZ-38-t0r" id="LTk-Ik-noc"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="cKF-FQ-os6"/>
+                                    <barButtonItem title="Library" id="Iif-Sp-oE3">
+                                        <connections>
+                                            <action selector="selectImage:" destination="BYZ-38-t0r" id="Foy-Qk-cmr"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Vgt-ZU-iFY"/>
+                                </items>
+                            </toolbar>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="osL-kM-Y5N">
+                                <rect key="frame" x="0.0" y="64" width="600" height="2"/>
+                            </progressView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="osL-kM-Y5N" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="1Ny-5g-Iqh"/>
+                            <constraint firstItem="CtF-JR-ttQ" firstAttribute="top" secondItem="osL-kM-Y5N" secondAttribute="bottom" id="2fw-Nh-5nA"/>
+                            <constraint firstAttribute="trailing" secondItem="osL-kM-Y5N" secondAttribute="trailing" id="Ep1-HM-gea"/>
+                            <constraint firstAttribute="trailing" secondItem="CtF-JR-ttQ" secondAttribute="trailing" id="HW3-hD-6vG"/>
+                            <constraint firstItem="osL-kM-Y5N" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="J1w-Ye-YiE"/>
+                            <constraint firstAttribute="trailing" secondItem="qBe-es-rzz" secondAttribute="trailing" id="TJE-Pl-d6V"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="qBe-es-rzz" secondAttribute="bottom" id="XpV-Fr-ZYc"/>
+                            <constraint firstItem="CtF-JR-ttQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Zpz-Od-aMu"/>
+                            <constraint firstItem="qBe-es-rzz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="g6z-U7-ZbD"/>
+                            <constraint firstItem="qBe-es-rzz" firstAttribute="top" secondItem="CtF-JR-ttQ" secondAttribute="bottom" id="ulD-6s-TjC"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Dio-JQ-CmT">
+                        <barButtonItem key="rightBarButtonItem" title="Upload Image" id="Mim-1c-RJv">
+                            <connections>
+                                <action selector="upload:" destination="BYZ-38-t0r" id="SZu-Dc-9b3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cameraButton" destination="0gE-vW-kYd" id="D99-ao-uNH"/>
+                        <outlet property="imageView" destination="CtF-JR-ttQ" id="FDl-aD-7Rd"/>
+                        <outlet property="libraryButton" destination="Iif-Sp-oE3" id="BRW-AD-hku"/>
+                        <outlet property="progressBar" destination="osL-kM-Y5N" id="LzI-c3-HH4"/>
+                        <outlet property="uploadButton" destination="Mim-1c-RJv" id="YCK-I6-gUU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1027" y="446"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="IYe-0p-gRR">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dA0-AD-ay6" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CeZ-Vn-ePu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="qX3-OC-24c"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WWV-T7-dg8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="364" y="446"/>
         </scene>
     </scenes>
 </document>
