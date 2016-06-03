@@ -19,21 +19,100 @@ class ViewController: UIViewController {
     
     var image = UIImage()
     
+    var storage: FIRStorage!
+    var storageRef: FIRStorageReference!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         uploadButton.enabled = false
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(.Camera)
+        
+        // Get a reference to the storage service, using the default Firebase App
+        storage = FIRStorage.storage()
+        // Create a storage reference from our storage service
+        storageRef = storage.referenceForURL("gs://fir-storagetestapp.appspot.com")
+    }
+    
+    @IBAction func download(sender: UIBarButtonItem) {
+        
+        // Create a reference to the file you want to download
+        let imageRef = storageRef.child("images/forest.jpg")
+        
+        // ** OPTION 1 **
+        // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+        
+        /*
+        imageRef.dataWithMaxSize(5 * 1024 * 1024) { (data, error) -> Void in
+            if (error != nil) {
+                // Uh-oh, an error occurred!
+                print("error")
+                print(error)
+            } else {
+                // Data for "images/island.jpg" is returned
+                // ... let islandImage: UIImage! = UIImage(data: data!)
+                self.image = UIImage(data: data!)!
+                self.imageView.image = self.image
+                self.uploadButton.enabled = true
+            }
+        }
+        */
+
+        // Create local filesystem URL
+        // Stored in file system (not in memory like in Option 1)
+        
+        let fileManager = NSFileManager.defaultManager()
+        let urls = fileManager.URLsForDirectory(.CachesDirectory, inDomains: .UserDomainMask)
+        let localURL = urls.last?.URLByAppendingPathComponent("image.jpg")
+        
+        // ** OPTION 2 **
+        // Download to the local filesystem with completion handler
+        
+        /*
+        let downloadTask = imageRef.writeToFile(localURL!) { (URL, error) -> Void in
+            if (error != nil) {
+                // Uh-oh, an error occurred!
+                print(error)
+            } else {
+                // Local file URL for "images/island.jpg" is returned
+                print(URL!)
+                if let filePath = localURL {
+                    self.image = UIImage(contentsOfFile: filePath.path!)!
+                    self.imageView.image = self.image
+                    self.uploadButton.enabled = true
+                }
+            }
+        }
+        */
+
+        // ** OPTION 3 **
+        // Stores image in local filesystem (storage, not memory)
+        // Does not use completion handler
+        
+        let downloadTask = imageRef.writeToFile(localURL!)
+        
+        downloadTask.observeStatus(.Success) { (snapshot) -> Void in
+            if let filePath = localURL {
+                self.image = UIImage(contentsOfFile: filePath.path!)!
+                self.imageView.image = self.image
+                self.uploadButton.enabled = true
+            }
+            print("Image downloaded successfully")
+        }
+        
+        downloadTask.observeStatus(.Progress) { (snapshot) -> Void in
+            if let downloadProg = snapshot.progress {
+                self.progressBar.progress = Float(downloadProg.completedUnitCount) / Float(downloadProg.totalUnitCount)
+            }
+            let percentComplete = 100.0 * Float((snapshot.progress?.completedUnitCount)!) / Float((snapshot.progress?.totalUnitCount)!)
+            print(percentComplete)
+        }
+
     }
     
     @IBAction func upload(sender: UIBarButtonItem) {
         
         let imageData = UIImageJPEGRepresentation(image, 1.0);
-        
-        let storage = FIRStorage.storage()
-        
-        // Create a storage reference from our storage service
-        let storageRef = storage.referenceForURL("gs://fir-storagetestapp.appspot.com")
         
         // Create a reference to the file you want to upload
         let riversRef = storageRef.child("images/nature.jpg")
@@ -46,13 +125,9 @@ class ViewController: UIViewController {
         let uploadTask = riversRef.putData(imageData!, metadata: metadata)
         
         // Listen for state changes, errors, and completion of the upload.
-        uploadTask.observeStatus(.Pause) { snapshot in
-            print("paused")
-        }
-        
         uploadTask.observeStatus(.Success) { snapshot in
             // Upload completed successfully
-            print("success")
+            print("Image uploaded successfully")
         }
         
         uploadTask.observeStatus(.Progress) { snapshot in

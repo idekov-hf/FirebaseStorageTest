@@ -57,7 +57,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Dio-JQ-CmT">
-                        <barButtonItem key="rightBarButtonItem" title="Upload Image" id="Mim-1c-RJv">
+                        <barButtonItem key="leftBarButtonItem" title="Download" id="KRu-q0-dxK">
+                            <connections>
+                                <action selector="download:" destination="BYZ-38-t0r" id="QkH-y2-nmE"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Upload" id="Mim-1c-RJv">
                             <connections>
                                 <action selector="upload:" destination="BYZ-38-t0r" id="SZu-Dc-9b3"/>
                             </connections>
