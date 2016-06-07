@@ -8,5 +8,6 @@ target 'FirebaseStorageTest' do
   # Pods for FirebaseStorageTest
   pod 'Firebase'
   pod 'Firebase/Storage'
+  pod 'Firebase/Messaging'
 
 end

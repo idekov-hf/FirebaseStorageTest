@@ -127,6 +127,11 @@
 					5D61C0561D00A9FA00E3D5D6 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = 9KQ77A48PB;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
