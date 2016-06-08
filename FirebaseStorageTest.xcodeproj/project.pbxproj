@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D42044A1D07D2850039EA06 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D4204491D07D2850039EA06 /* Parse.framework */; };
 		5D61C05B1D00A9FA00E3D5D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D61C05A1D00A9FA00E3D5D6 /* AppDelegate.swift */; };
 		5D61C05D1D00A9FA00E3D5D6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D61C05C1D00A9FA00E3D5D6 /* ViewController.swift */; };
 		5D61C0601D00A9FA00E3D5D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D61C05E1D00A9FA00E3D5D6 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D4204491D07D2850039EA06 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "Pods/../build/Debug-iphoneos/Parse/Parse.framework"; sourceTree = "<group>"; };
 		5D61C0571D00A9FA00E3D5D6 /* FirebaseStorageTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirebaseStorageTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D61C05A1D00A9FA00E3D5D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5D61C05C1D00A9FA00E3D5D6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -35,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D42044A1D07D2850039EA06 /* Parse.framework in Frameworks */,
 				F17AC581A90E1BB292CB764D /* Pods_FirebaseStorageTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -45,6 +48,7 @@
 		4865B1B49A7DE62D83368574 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5D4204491D07D2850039EA06 /* Parse.framework */,
 				5F51474BD3BE04C812C00AA1 /* Pods_FirebaseStorageTest.framework */,
 			);
 			name = Frameworks;
@@ -337,6 +341,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Parse",
+				);
 				INFOPLIST_FILE = FirebaseStorageTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = IavorDekov.FirebaseStorageTest;
@@ -352,6 +360,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Parse",
+				);
 				INFOPLIST_FILE = FirebaseStorageTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = IavorDekov.FirebaseStorageTest;

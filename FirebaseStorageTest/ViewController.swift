@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Parse
 
 class ViewController: UIViewController {
     
@@ -32,6 +33,10 @@ class ViewController: UIViewController {
         storage = FIRStorage.storage()
         // Create a storage reference from our storage service
         storageRef = storage.referenceForURL("gs://fir-storagetestapp.appspot.com")
+        
+        let testObject = PFObject(className: "TestObject")
+        testObject["foo"] = "bar"
+        testObject.saveInBackground()
     }
     
     @IBAction func download(sender: UIBarButtonItem) {

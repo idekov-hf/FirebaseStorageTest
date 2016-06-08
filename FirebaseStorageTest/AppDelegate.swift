@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FIRApp.configure()
         application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Sound, .Alert, .Badge ], categories: nil))
+        
+        Parse.initializeWithConfiguration(ParseClientConfiguration(block: {(configuration: ParseMutableClientConfiguration) -> Void in
+            configuration.applicationId = "NVPRIp61qbH3LXvJ9pPn"
+            configuration.server = "https://pughcenterapp.herokuapp.com/parse"
+        }))
+
         return true
     }
 

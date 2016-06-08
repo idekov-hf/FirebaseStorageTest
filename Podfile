@@ -9,5 +9,6 @@ target 'FirebaseStorageTest' do
   pod 'Firebase'
   pod 'Firebase/Storage'
   pod 'Firebase/Messaging'
+  pod 'Parse'
 
 end
